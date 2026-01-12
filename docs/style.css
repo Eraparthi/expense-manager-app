@@ -16,7 +16,7 @@ header {
   padding: 16px;
 }
 
-input, button {
+input, select, button {
   width: 100%;
   padding: 12px;
   margin-top: 10px;
@@ -40,4 +40,12 @@ li {
   padding: 10px;
   margin-top: 8px;
   border-radius: 6px;
+}
+
+.income {
+  border-left: 5px solid green;
+}
+
+.expense {
+  border-left: 5px solid red;
 }
