@@ -1,16 +1,26 @@
-<select id="type">
-  <option value="expense">Expense</option>
-  <option value="income">Income</option>
-</select>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense Manager</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
 
-<input type="text" id="title" placeholder="Title" />
-<input type="number" id="amount" placeholder="Amount" />
+  <header>Expense Manager</header>
 
-<select id="category"></select>
-<select id="subCategory"></select>
+  <div class="container">
+    <input type="text" id="title" placeholder="Expense name" />
+    <input type="number" id="amount" placeholder="Amount" />
+    <button onclick="addExpense()">Add Expense</button>
 
-<button onclick="addEntry()">Add</button>
+    <ul id="list"></ul>
 
-<ul id="list"></ul>
+    <h3>Total: ₹<span id="total">0</span></h3>
+  </div>
 
-<h3>Balance: ₹<span id="total">0</span></h3>
+  <script src="app.js"></script>
+</body>
+</html>
