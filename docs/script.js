@@ -1,18 +1,19 @@
 const defaultExpenseCategories = [
-  "Grocery",
-  "Electricity Bill",
-  "Water Bill",
-  "Gas Cylinder",
-  "Internet / Mobile",
-  "Credit Card Bill",
-  "Home Loan EMI",
-  "Personal Loan EMI",
-  "Fuel",
-  "Medical",
-  "Education",
-  "Shopping",
-  "Maintenance",
-  "Miscellaneous"
+  { name: "Grocery", icon: "🛒" },
+  { name: "Electricity Bill", icon: "⚡" },
+  { name: "Water Bill", icon: "🚰" },
+  { name: "Gas Cylinder", icon: "🔥" },
+  { name: "Credit Card Bill", icon: "💳" },
+  { name: "Loan EMI", icon: "🏦" },
+  { name: "Rent", icon: "🏠" },
+  { name: "Fuel", icon: "⛽" },
+  { name: "Medical", icon: "🏥" },
+  { name: "Education", icon: "🎓" },
+  { name: "Internet / Mobile", icon: "📱" },
+  { name: "Insurance", icon: "🛡️" },
+  { name: "Maintenance", icon: "🛠️" },
+  { name: "Shopping", icon: "🛍️" },
+  { name: "Miscellaneous", icon: "📦" }
 ];
 
 let expenseCategories =
@@ -24,11 +25,11 @@ let transactions =
 
 const typeEl = document.getElementById("type");
 const categoryEl = document.getElementById("category");
+const categoryListEl = document.getElementById("categoryList");
 const balanceEl = document.getElementById("balance");
 const listEl = document.getElementById("transactionList");
-const categoryListEl = document.getElementById("categoryList");
 
-/* -------- CATEGORY MANAGEMENT -------- */
+/* ---------- CATEGORY ---------- */
 
 function saveCategories() {
   localStorage.setItem("expenseCategories", JSON.stringify(expenseCategories));
@@ -38,10 +39,10 @@ function loadCategories() {
   categoryEl.innerHTML = "";
 
   if (typeEl.value === "expense") {
-    expenseCategories.forEach(cat => {
+    expenseCategories.forEach((cat, i) => {
       const opt = document.createElement("option");
-      opt.value = cat;
-      opt.textContent = cat;
+      opt.value = i;
+      opt.textContent = `${cat.icon} ${cat.name}`;
       categoryEl.appendChild(opt);
     });
     renderCategoryManager();
@@ -57,17 +58,25 @@ function loadCategories() {
 }
 
 function addCategory() {
-  const input = document.getElementById("newCategory");
-  const value = input.value.trim();
+  const name = document.getElementById("newCategory").value.trim();
+  const icon = document.getElementById("newIcon").value.trim() || "📌";
 
-  if (!value || expenseCategories.includes(value)) {
-    alert("Invalid or duplicate category");
-    return;
-  }
+  if (!name) return alert("Enter category name");
 
-  expenseCategories.push(value);
+  expenseCategories.push({ name, icon });
   saveCategories();
-  input.value = "";
+  loadCategories();
+
+  document.getElementById("newCategory").value = "";
+  document.getElementById("newIcon").value = "";
+}
+
+function editCategory(index) {
+  const newName = prompt("Edit category name", expenseCategories[index].name);
+  if (!newName) return;
+
+  expenseCategories[index].name = newName;
+  saveCategories();
   loadCategories();
 }
 
@@ -80,11 +89,14 @@ function deleteCategory(index) {
 
 function renderCategoryManager() {
   categoryListEl.innerHTML = "";
-  expenseCategories.forEach((cat, index) => {
+  expenseCategories.forEach((cat, i) => {
     const li = document.createElement("li");
     li.innerHTML = `
-      <span>${cat}</span>
-      <button onclick="deleteCategory(${index})">❌</button>
+      <span>${cat.icon} ${cat.name}</span>
+      <div>
+        <button onclick="editCategory(${i})">✏️</button>
+        <button onclick="deleteCategory(${i})">❌</button>
+      </div>
     `;
     categoryListEl.appendChild(li);
   });
@@ -92,7 +104,7 @@ function renderCategoryManager() {
 
 typeEl.addEventListener("change", loadCategories);
 
-/* -------- TRANSACTIONS -------- */
+/* ---------- TRANSACTIONS ---------- */
 
 function saveTransactions() {
   localStorage.setItem("transactions", JSON.stringify(transactions));
@@ -127,21 +139,19 @@ function addTransaction() {
   const title = document.getElementById("title").value;
   const amount = Number(document.getElementById("amount").value);
 
-  if (!title || amount <= 0) {
-    alert("Enter valid details");
-    return;
-  }
+  if (!title || amount <= 0) return alert("Invalid input");
 
-  const transaction = {
+  let categoryText = categoryEl.options[categoryEl.selectedIndex].text;
+
+  transactions.push({
     id: Date.now(),
     type: typeEl.value,
-    category: categoryEl.value,
+    category: categoryText,
     title,
     amount,
     date: new Date().toLocaleString()
-  };
+  });
 
-  transactions.push(transaction);
   saveTransactions();
   renderTransactions();
   calculateBalance();
@@ -150,7 +160,7 @@ function addTransaction() {
   document.getElementById("amount").value = "";
 }
 
-/* -------- INIT -------- */
+/* ---------- INIT ---------- */
 
 loadCategories();
 renderTransactions();
