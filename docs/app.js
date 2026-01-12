@@ -29,11 +29,11 @@ function updateCategories() {
   subCategory.innerHTML = "";
 
   Object.keys(categories[type]).forEach(cat => {
-    category.innerHTML += `<option value="${cat}">${cat}</option>`;
+    category.innerHTML += `<option>${cat}</option>`;
   });
 
   updateSubCategories();
-  category.addEventListener("change", updateSubCategories);
+  category.onchange = updateSubCategories;
 }
 
 function updateSubCategories() {
@@ -44,27 +44,26 @@ function updateSubCategories() {
   subCategory.innerHTML = "";
 
   categories[type][category].forEach(sub => {
-    subCategory.innerHTML += `<option value="${sub}">${sub}</option>`;
+    subCategory.innerHTML += `<option>${sub}</option>`;
   });
 }
 
 function addEntry() {
   const title = document.getElementById("title").value.trim();
   const amount = Number(document.getElementById("amount").value);
-  const type = document.getElementById("type").value;
 
   if (!title || !amount) return;
 
   const now = new Date();
 
   const entry = {
-    type,
+    type: document.getElementById("type").value,
     title,
     amount,
     category: document.getElementById("category").value,
     subCategory: document.getElementById("subCategory").value,
     date: now.toISOString().split("T")[0],
-    time: now.toTimeString().slice(0, 5)
+    time: now.toTimeString().slice(0,5)
   };
 
   data.push(entry);
@@ -78,23 +77,23 @@ function addEntry() {
 
 function render() {
   const list = document.getElementById("list");
-  const totalEl = document.getElementById("total");
+  const total = document.getElementById("total");
 
   list.innerHTML = "";
   let balance = 0;
 
-  data.forEach(entry => {
-    balance += entry.type === "income" ? entry.amount : -entry.amount;
+  data.forEach(e => {
+    balance += e.type === "income" ? e.amount : -e.amount;
 
     const li = document.createElement("li");
-    li.className = entry.type;
+    li.className = e.type;
     li.innerHTML = `
-      <strong>${entry.title}</strong><br>
-      ${entry.category} / ${entry.subCategory}<br>
-      ₹${entry.amount} | ${entry.date} ${entry.time}
+      <strong>${e.title}</strong><br>
+      ${e.category} / ${e.subCategory}<br>
+      ₹${e.amount} • ${e.date} ${e.time}
     `;
     list.appendChild(li);
   });
 
-  totalEl.textContent = balance;
+  total.textContent = balance;
 }
