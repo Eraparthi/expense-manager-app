@@ -1,28 +1,100 @@
-const categories = {
-  income: ["Salary", "Business", "Investment", "Other"],
-  expense: ["Food", "Travel", "Shopping", "Bills", "Other"]
-};
+const defaultExpenseCategories = [
+  "Grocery",
+  "Electricity Bill",
+  "Water Bill",
+  "Gas Cylinder",
+  "Internet / Mobile",
+  "Credit Card Bill",
+  "Home Loan EMI",
+  "Personal Loan EMI",
+  "Fuel",
+  "Medical",
+  "Education",
+  "Shopping",
+  "Maintenance",
+  "Miscellaneous"
+];
 
-let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+let expenseCategories =
+  JSON.parse(localStorage.getItem("expenseCategories")) ||
+  defaultExpenseCategories;
 
-const balanceEl = document.getElementById("balance");
-const listEl = document.getElementById("transactionList");
+let transactions =
+  JSON.parse(localStorage.getItem("transactions")) || [];
+
 const typeEl = document.getElementById("type");
 const categoryEl = document.getElementById("category");
+const balanceEl = document.getElementById("balance");
+const listEl = document.getElementById("transactionList");
+const categoryListEl = document.getElementById("categoryList");
+
+/* -------- CATEGORY MANAGEMENT -------- */
+
+function saveCategories() {
+  localStorage.setItem("expenseCategories", JSON.stringify(expenseCategories));
+}
 
 function loadCategories() {
   categoryEl.innerHTML = "";
-  categories[typeEl.value].forEach(cat => {
-    const option = document.createElement("option");
-    option.value = cat;
-    option.textContent = cat;
-    categoryEl.appendChild(option);
+
+  if (typeEl.value === "expense") {
+    expenseCategories.forEach(cat => {
+      const opt = document.createElement("option");
+      opt.value = cat;
+      opt.textContent = cat;
+      categoryEl.appendChild(opt);
+    });
+    renderCategoryManager();
+  } else {
+    ["Salary", "Business", "Investment", "Other"].forEach(cat => {
+      const opt = document.createElement("option");
+      opt.value = cat;
+      opt.textContent = cat;
+      categoryEl.appendChild(opt);
+    });
+    categoryListEl.innerHTML = "";
+  }
+}
+
+function addCategory() {
+  const input = document.getElementById("newCategory");
+  const value = input.value.trim();
+
+  if (!value || expenseCategories.includes(value)) {
+    alert("Invalid or duplicate category");
+    return;
+  }
+
+  expenseCategories.push(value);
+  saveCategories();
+  input.value = "";
+  loadCategories();
+}
+
+function deleteCategory(index) {
+  if (!confirm("Delete this category?")) return;
+  expenseCategories.splice(index, 1);
+  saveCategories();
+  loadCategories();
+}
+
+function renderCategoryManager() {
+  categoryListEl.innerHTML = "";
+  expenseCategories.forEach((cat, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span>${cat}</span>
+      <button onclick="deleteCategory(${index})">❌</button>
+    `;
+    categoryListEl.appendChild(li);
   });
 }
 
 typeEl.addEventListener("change", loadCategories);
 
-function saveData() {
+/* -------- TRANSACTIONS -------- */
+
+function saveTransactions() {
   localStorage.setItem("transactions", JSON.stringify(transactions));
 }
 
@@ -40,7 +112,8 @@ function renderTransactions() {
     const li = document.createElement("li");
     li.className = t.type;
     li.innerHTML = `
-      <strong>${t.title}</strong> (${t.category})<br>
+      <strong>${t.title}</strong><br>
+      <small>${t.category}</small><br>
       <small>${t.date}</small>
       <span style="float:right">
         ${t.type === "income" ? "+" : "-"}₹${t.amount}
@@ -69,7 +142,7 @@ function addTransaction() {
   };
 
   transactions.push(transaction);
-  saveData();
+  saveTransactions();
   renderTransactions();
   calculateBalance();
 
@@ -77,7 +150,8 @@ function addTransaction() {
   document.getElementById("amount").value = "";
 }
 
-/* INIT */
+/* -------- INIT -------- */
+
 loadCategories();
 renderTransactions();
 calculateBalance();
