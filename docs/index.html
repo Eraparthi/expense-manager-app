@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Expense Manager</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
@@ -13,22 +13,28 @@
 
 <div class="container">
 
-  <select id="type">
-    <option value="expense">Expense</option>
-    <option value="income">Income</option>
-  </select>
+  <div class="card">
+    <select id="type">
+      <option value="expense">Expense</option>
+      <option value="income">Income</option>
+    </select>
 
-  <input type="text" id="title" placeholder="Title" />
-  <input type="number" id="amount" placeholder="Amount" />
+    <input id="title" placeholder="Title">
+    <input id="amount" type="number" placeholder="Amount">
 
-  <select id="category"></select>
-  <select id="subCategory"></select>
+    <select id="category"></select>
+    <select id="subCategory"></select>
 
-  <button onclick="addEntry()">Add Entry</button>
+    <button onclick="addEntry()">Add Entry</button>
+  </div>
 
-  <ul id="list"></ul>
+  <div class="card">
+    <ul id="list"></ul>
+  </div>
 
-  <h3>Balance: ₹<span id="total">0</span></h3>
+  <div class="card balance">
+    Balance: ₹<span id="total">0</span>
+  </div>
 
 </div>
 
