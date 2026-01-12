@@ -9,17 +9,16 @@ body {
 }
 
 .container {
-  max-width: 420px;
+  max-width: 430px;
   margin: 30px auto;
   background: #ffffff;
   padding: 20px;
   border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 15px;
 }
 
 .balance-card {
@@ -31,24 +30,13 @@ h1 {
   margin-bottom: 20px;
 }
 
-.balance-card p {
-  margin: 0;
-  font-size: 14px;
-}
-
-.balance-card h2 {
-  margin: 5px 0 0;
-  font-size: 26px;
-}
-
 .form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-select,
-input {
+select, input {
   padding: 12px;
   font-size: 14px;
   border-radius: 8px;
@@ -75,11 +63,6 @@ button:hover {
   border-top: 1px solid #ddd;
 }
 
-.category-box h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
 .category-box ul {
   list-style: none;
   padding: 0;
@@ -89,6 +72,7 @@ button:hover {
 .category-box li {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background: #f1f5f9;
   padding: 8px;
   border-radius: 6px;
@@ -96,7 +80,18 @@ button:hover {
   font-size: 14px;
 }
 
-ul#transactionList {
+.category-box li span {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.category-box button {
+  padding: 4px 6px;
+  font-size: 12px;
+}
+
+#transactionList {
   list-style: none;
   padding: 0;
   margin-top: 20px;
@@ -106,15 +101,14 @@ ul#transactionList {
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 8px;
-  font-size: 14px;
 }
 
-#transactionList li.income {
+.income {
   background: #e0f7ec;
   color: #047857;
 }
 
-#transactionList li.expense {
+.expense {
   background: #fee2e2;
   color: #b91c1c;
 }
