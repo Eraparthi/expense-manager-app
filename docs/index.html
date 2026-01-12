@@ -9,18 +9,29 @@
 </head>
 <body>
 
-  <header>Expense Manager</header>
+<header>Expense Manager</header>
 
-  <div class="container">
-    <input type="text" id="title" placeholder="Expense name" />
-    <input type="number" id="amount" placeholder="Amount" />
-    <button onclick="addExpense()">Add Expense</button>
+<div class="container">
 
-    <ul id="list"></ul>
+  <select id="type">
+    <option value="expense">Expense</option>
+    <option value="income">Income</option>
+  </select>
 
-    <h3>Total: ₹<span id="total">0</span></h3>
-  </div>
+  <input type="text" id="title" placeholder="Title" />
+  <input type="number" id="amount" placeholder="Amount" />
 
-  <script src="app.js"></script>
+  <select id="category"></select>
+  <select id="subCategory"></select>
+
+  <button onclick="addEntry()">Add Entry</button>
+
+  <ul id="list"></ul>
+
+  <h3>Balance: ₹<span id="total">0</span></h3>
+
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
