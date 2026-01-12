@@ -1,0 +1,126 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg,#020617,#0f172a);
+  color: #e5e7eb;
+}
+
+.app {
+  max-width: 420px;
+  margin: auto;
+  padding: 16px;
+}
+
+/* HEADER */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #94a3b8;
+}
+
+/* BALANCE */
+.balance-card {
+  background: linear-gradient(135deg,#6366f1,#22d3ee);
+  border-radius: 18px;
+  padding: 20px;
+  margin: 16px 0;
+  color: #fff;
+}
+
+/* CARDS */
+.card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+select, input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.primary {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  font-size: 16px;
+}
+
+.secondary {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: #334155;
+  color: white;
+}
+
+/* SUMMARY */
+.summary {
+  display: flex;
+  gap: 10px;
+}
+
+.summary-box {
+  flex: 1;
+  padding: 12px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.summary-box.income { background: #16a34a; }
+.summary-box.expense { background: #dc2626; }
+
+/* LIST */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: rgba(255,255,255,0.06);
+  padding: 12px;
+  border-radius: 14px;
+  margin-bottom: 8px;
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-box {
+  background: #020617;
+  width: 90%;
+  max-width: 360px;
+  padding: 20px;
+  border-radius: 20px;
+}
