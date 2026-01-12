@@ -10,10 +10,10 @@
 
 <div class="app">
 
-  <!-- HEADER -->
+  <!-- TOP BAR -->
   <header class="topbar">
     <h1>Expense Tracker</h1>
-    <button class="icon-btn" onclick="toggleSettings()">⚙️</button>
+    <button class="menu-btn" onclick="toggleSettings()">☰</button>
   </header>
 
   <!-- BALANCE -->
@@ -40,12 +40,12 @@
   <!-- SUMMARY -->
   <section class="summary">
     <div class="summary-box income">
-      <span>Income</span>
-      <strong>₹ <span id="monthIncome">0</span></strong>
+      <span>Total Income</span>
+      <strong>₹ <span id="totalIncome">0</span></strong>
     </div>
     <div class="summary-box expense">
-      <span>Expense</span>
-      <strong>₹ <span id="monthExpense">0</span></strong>
+      <span>Total Expense</span>
+      <strong>₹ <span id="totalExpense">0</span></strong>
     </div>
   </section>
 
@@ -57,19 +57,17 @@
 
 </div>
 
-<!-- SETTINGS MODAL -->
-<div id="settingsModal" class="modal hidden">
-  <div class="modal-box">
-    <h3>Manage Expense Categories</h3>
+<!-- SETTINGS PANEL -->
+<div id="settingsPanel" class="settings hidden">
+  <h3>Manage Expense Categories</h3>
 
-    <input id="newCategory" placeholder="Category name">
-    <input id="newIcon" placeholder="Icon (🛒 ⚡ 💳)">
-    <button onclick="addCategory()">Add Category</button>
+  <input id="newCategory" placeholder="Category name">
+  <input id="newIcon" placeholder="Icon (🛒 ⚡ 💳)">
+  <button onclick="addCategory()">Add Category</button>
 
-    <ul id="categoryList"></ul>
+  <ul id="categoryList"></ul>
 
-    <button class="secondary" onclick="toggleSettings()">Close</button>
-  </div>
+  <button class="secondary" onclick="toggleSettings()">Close</button>
 </div>
 
 <script src="script.js"></script>
