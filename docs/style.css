@@ -11,15 +11,14 @@ body {
 .container {
   max-width: 420px;
   margin: 30px auto;
-  background: #ffffff;
+  background: #fff;
   padding: 20px;
   border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
 }
 
 .balance-card {
@@ -29,11 +28,6 @@ h1 {
   padding: 15px;
   border-radius: 12px;
   margin-bottom: 20px;
-}
-
-.balance-card p {
-  margin: 0;
-  font-size: 14px;
 }
 
 .balance-card h2 {
@@ -47,8 +41,7 @@ h1 {
   gap: 10px;
 }
 
-select,
-input {
+select, input {
   padding: 12px;
   font-size: 14px;
   border-radius: 8px;
@@ -76,8 +69,6 @@ ul {
 }
 
 li {
-  display: flex;
-  justify-content: space-between;
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 8px;
