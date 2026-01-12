@@ -1,86 +1,28 @@
-* {
-  box-sizing: border-box;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-}
-
-body {
-  margin: 0;
-  background: #f4f6f8;
-}
-
-.container {
-  max-width: 420px;
-  margin: 30px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-h1 {
-  text-align: center;
-}
-
-.balance-card {
-  background: #4f46e5;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
-
-.balance-card h2 {
-  margin: 5px 0 0;
-  font-size: 26px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-select, input {
-  padding: 12px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-button {
-  padding: 12px;
-  font-size: 15px;
-  border-radius: 8px;
-  border: none;
-  background: #4f46e5;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #4338ca;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
+.category-box {
   margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
 }
 
-li {
-  padding: 10px;
-  border-radius: 8px;
+.category-box h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.category-box input {
+  width: 100%;
   margin-bottom: 8px;
-  font-size: 14px;
 }
 
-li.income {
-  background: #e0f7ec;
-  color: #047857;
+.category-box ul {
+  margin-top: 10px;
 }
 
-li.expense {
-  background: #fee2e2;
-  color: #b91c1c;
+.category-box li {
+  display: flex;
+  justify-content: space-between;
+  background: #f1f5f9;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 6px;
 }
