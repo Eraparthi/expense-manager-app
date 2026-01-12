@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Expense Manager</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>Expense Manager</header>
+  <div class="container">
+    <h1>Expense Manager</h1>
 
-<div class="container">
+    <div class="balance-card">
+      <p>Balance</p>
+      <h2>₹ <span id="balance">0</span></h2>
+    </div>
 
-  <div class="card">
-    <select id="type">
-      <option value="expense">Expense</option>
-      <option value="income">Income</option>
-    </select>
+    <div class="form">
+      <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
 
-    <input id="title" placeholder="Title">
-    <input id="amount" type="number" placeholder="Amount">
+      <input type="text" id="title" placeholder="Title" />
+      <input type="number" id="amount" placeholder="Amount" />
 
-    <select id="category"></select>
-    <select id="subCategory"></select>
+      <button onclick="addTransaction()">Add Transaction</button>
+    </div>
 
-    <button onclick="addEntry()">Add Entry</button>
+    <ul id="transactionList"></ul>
   </div>
 
-  <div class="card">
-    <ul id="list"></ul>
-  </div>
-
-  <div class="card balance">
-    Balance: ₹<span id="total">0</span>
-  </div>
-
-</div>
-
-<script src="app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
