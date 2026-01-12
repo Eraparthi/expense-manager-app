@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <h1>Expense Tracker</h1>
+    <button class="icon-btn" onclick="toggleSettings()">⚙️</button>
+  </header>
+
+  <!-- BALANCE -->
+  <section class="balance-card">
+    <p>Total Balance</p>
+    <h2>₹ <span id="balance">0</span></h2>
+  </section>
+
+  <!-- ADD TRANSACTION -->
+  <section class="card">
+    <select id="type">
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+
+    <select id="category"></select>
+
+    <input id="title" placeholder="Description">
+    <input id="amount" type="number" placeholder="Amount">
+
+    <button class="primary" onclick="addTransaction()">Add Transaction</button>
+  </section>
+
+  <!-- SUMMARY -->
+  <section class="summary">
+    <div class="summary-box income">
+      <span>Income</span>
+      <strong>₹ <span id="monthIncome">0</span></strong>
+    </div>
+    <div class="summary-box expense">
+      <span>Expense</span>
+      <strong>₹ <span id="monthExpense">0</span></strong>
+    </div>
+  </section>
+
+  <!-- TRANSACTIONS -->
+  <section class="card">
+    <h3>Transactions</h3>
+    <ul id="transactionList"></ul>
+  </section>
+
+</div>
+
+<!-- SETTINGS MODAL -->
+<div id="settingsModal" class="modal hidden">
+  <div class="modal-box">
+    <h3>Manage Expense Categories</h3>
+
+    <input id="newCategory" placeholder="Category name">
+    <input id="newIcon" placeholder="Icon (🛒 ⚡ 💳)">
+    <button onclick="addCategory()">Add Category</button>
+
+    <ul id="categoryList"></ul>
+
+    <button class="secondary" onclick="toggleSettings()">Close</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
