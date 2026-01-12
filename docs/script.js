@@ -1,3 +1,4 @@
+localStorage.clear();
 const defaultExpenseCategories = [
   { name: "Grocery", icon: "🛒" },
   { name: "Electricity Bill", icon: "⚡" },
