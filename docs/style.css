@@ -1,114 +1,93 @@
 * {
   box-sizing: border-box;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
 }
 
 body {
   margin: 0;
-  background: #f4f6f8;
+  background: linear-gradient(135deg,#0f172a,#1e293b);
+  color: #e5e7eb;
 }
 
-.container {
-  max-width: 430px;
-  margin: 30px auto;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+.app {
+  max-width: 420px;
+  margin: auto;
+  padding: 16px;
 }
 
-h1 {
+header {
   text-align: center;
+  margin-bottom: 16px;
 }
 
-.balance-card {
-  background: #4f46e5;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 20px;
+.balance {
+  background: linear-gradient(135deg,#6366f1,#22d3ee);
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 10px;
+  color: #fff;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  padding: 14px;
+  border-radius: 16px;
+  margin-bottom: 16px;
 }
 
 select, input {
+  width: 100%;
   padding: 12px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  border: none;
 }
 
 button {
+  width: 100%;
   padding: 12px;
-  font-size: 15px;
-  border-radius: 8px;
+  border-radius: 12px;
   border: none;
-  background: #4f46e5;
+  background: #6366f1;
   color: white;
-  cursor: pointer;
+  font-size: 16px;
 }
 
-button:hover {
-  background: #4338ca;
+.summary {
+  display: flex;
+  gap: 10px;
 }
 
-.category-box {
-  margin-top: 25px;
-  padding-top: 15px;
-  border-top: 1px solid #ddd;
+.summary-card {
+  flex: 1;
+  padding: 12px;
+  border-radius: 14px;
+  text-align: center;
 }
 
-.category-box ul {
+.summary-card.income { background: #16a34a; }
+.summary-card.expense { background: #dc2626; }
+
+ul {
   list-style: none;
   padding: 0;
-  margin-top: 10px;
 }
 
-.category-box li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f1f5f9;
-  padding: 8px;
-  border-radius: 6px;
-  margin-bottom: 6px;
-  font-size: 14px;
-}
-
-.category-box li span {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-.category-box button {
-  padding: 4px 6px;
-  font-size: 12px;
-}
-
-#transactionList {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
-}
-
-#transactionList li {
+li {
+  background: rgba(255,255,255,0.08);
   padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 8px;
+  border-radius: 12px;
+  margin-bottom: 6px;
 }
 
-.income {
-  background: #e0f7ec;
-  color: #047857;
+.actions {
+  float: right;
 }
 
-.expense {
-  background: #fee2e2;
-  color: #b91c1c;
+.actions button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 14px;
 }
