@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Expense Manager</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
@@ -28,6 +28,15 @@
     <input type="number" id="amount" placeholder="Amount"/>
 
     <button onclick="addTransaction()">Add Transaction</button>
+  </div>
+
+  <!-- CATEGORY MANAGEMENT -->
+  <div class="category-box">
+    <h3>Manage Expense Categories</h3>
+    <input type="text" id="newCategory" placeholder="New category name"/>
+    <button onclick="addCategory()">Add Category</button>
+
+    <ul id="categoryList"></ul>
   </div>
 
   <ul id="transactionList"></ul>
