@@ -2,35 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Expense Manager</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="container">
-    <h1>Expense Manager</h1>
+<div class="container">
+  <h1>Expense Manager</h1>
 
-    <div class="balance-card">
-      <p>Balance</p>
-      <h2>₹ <span id="balance">0</span></h2>
-    </div>
-
-    <div class="form">
-      <select id="type">
-        <option value="income">Income</option>
-        <option value="expense">Expense</option>
-      </select>
-
-      <input type="text" id="title" placeholder="Title" />
-      <input type="number" id="amount" placeholder="Amount" />
-
-      <button onclick="addTransaction()">Add Transaction</button>
-    </div>
-
-    <ul id="transactionList"></ul>
+  <div class="balance-card">
+    <p>Balance</p>
+    <h2>₹ <span id="balance">0</span></h2>
   </div>
 
-  <script src="script.js"></script>
+  <div class="form">
+    <select id="type">
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+
+    <select id="category"></select>
+
+    <input type="text" id="title" placeholder="Title"/>
+    <input type="number" id="amount" placeholder="Amount"/>
+
+    <button onclick="addTransaction()">Add Transaction</button>
+  </div>
+
+  <ul id="transactionList"></ul>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
