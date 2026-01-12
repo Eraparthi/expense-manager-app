@@ -1,4 +1,6 @@
-/* ---------- DATA ---------- */
+/* =======================
+   DATA
+======================= */
 
 const incomeCategories = [
   { name: "Salary", icon: "💼" },
@@ -25,25 +27,33 @@ let expenseCategories =
 let transactions =
   JSON.parse(localStorage.getItem("transactions")) || [];
 
-/* ---------- ELEMENTS ---------- */
+/* =======================
+   ELEMENTS
+======================= */
 
 const typeEl = document.getElementById("type");
 const categoryEl = document.getElementById("category");
 
-/* ---------- SETTINGS ---------- */
+/* =======================
+   SETTINGS
+======================= */
 
 function toggleSettings() {
-  document.getElementById("settingsModal").classList.toggle("hidden");
+  document.getElementById("settingsPanel").classList.toggle("hidden");
   renderCategoryManager();
 }
 
-/* ---------- CATEGORIES ---------- */
+/* =======================
+   CATEGORIES
+======================= */
 
 function loadCategories() {
   categoryEl.innerHTML = "";
-  const cats = typeEl.value === "income"
-    ? incomeCategories
-    : expenseCategories;
+
+  const cats =
+    typeEl.value === "income"
+      ? incomeCategories
+      : expenseCategories;
 
   cats.forEach((c, i) => {
     const opt = document.createElement("option");
@@ -63,36 +73,53 @@ function addCategory() {
     icon: newIcon.value || "📌"
   });
 
-  localStorage.setItem("expenseCategories", JSON.stringify(expenseCategories));
+  localStorage.setItem(
+    "expenseCategories",
+    JSON.stringify(expenseCategories)
+  );
+
   newCategory.value = "";
   newIcon.value = "";
+
   renderCategoryManager();
   loadCategories();
 }
 
 function renderCategoryManager() {
   categoryList.innerHTML = "";
+
   expenseCategories.forEach((c, i) => {
     const li = document.createElement("li");
-    li.innerHTML = `${c.icon} ${c.name}
-      <button onclick="deleteCategory(${i})">❌</button>`;
+    li.innerHTML = `
+      ${c.icon} ${c.name}
+      <button onclick="deleteCategory(${i})">❌</button>
+    `;
     categoryList.appendChild(li);
   });
 }
 
 function deleteCategory(i) {
   expenseCategories.splice(i, 1);
-  localStorage.setItem("expenseCategories", JSON.stringify(expenseCategories));
+  localStorage.setItem(
+    "expenseCategories",
+    JSON.stringify(expenseCategories)
+  );
   renderCategoryManager();
   loadCategories();
 }
 
-/* ---------- TRANSACTIONS ---------- */
+/* =======================
+   TRANSACTIONS
+======================= */
 
 function addTransaction() {
   if (!title.value || amount.value <= 0) return;
 
-  const cats = typeEl.value === "income" ? incomeCategories : expenseCategories;
+  const cats =
+    typeEl.value === "income"
+      ? incomeCategories
+      : expenseCategories;
+
   const cat = cats[categoryEl.value];
 
   transactions.push({
@@ -100,35 +127,43 @@ function addTransaction() {
     type: typeEl.value,
     title: title.value,
     category: `${cat.icon} ${cat.name}`,
-    amount: Number(amount.value),
-    date: new Date()
+    amount: Number(amount.value)
   });
 
-  localStorage.setItem("transactions", JSON.stringify(transactions));
+  localStorage.setItem(
+    "transactions",
+    JSON.stringify(transactions)
+  );
+
   title.value = "";
   amount.value = "";
+
   render();
 }
 
 function render() {
   transactionList.innerHTML = "";
-  let balance = 0, income = 0, expense = 0;
+
+  let income = 0;
+  let expense = 0;
 
   transactions.forEach(t => {
-    balance += t.type === "income" ? t.amount : -t.amount;
-    t.type === "income" ? income += t.amount : expense += t.amount;
+    if (t.type === "income") income += t.amount;
+    else expense += t.amount;
 
     const li = document.createElement("li");
     li.textContent = `${t.category} - ${t.title} ₹${t.amount}`;
     transactionList.appendChild(li);
   });
 
-  document.getElementById("balance").innerText = balance;
-  monthIncome.innerText = income;
-  monthExpense.innerText = expense;
+  document.getElementById("balance").innerText = income - expense;
+  totalIncome.innerText = income;
+  totalExpense.innerText = expense;
 }
 
-/* ---------- INIT ---------- */
+/* =======================
+   INIT
+======================= */
 
 loadCategories();
 render();
