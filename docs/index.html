@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Expense Manager</title>
+<title>Expense Tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,14 +11,16 @@
 <div class="app">
 
   <header>
-    <h1>💰 Smart Expense Manager</h1>
-    <div class="balance">
-      <span>Balance</span>
-      <h2>₹ <span id="balance">0</span></h2>
-    </div>
+    <h1>Expense Tracker</h1>
+    <button class="settings-btn" onclick="toggleSettings()">⚙️</button>
   </header>
 
-  <section class="card">
+  <section class="balance-card">
+    <span>Total Balance</span>
+    <h2>₹ <span id="balance">0</span></h2>
+  </section>
+
+  <section class="add-card">
     <select id="type">
       <option value="income">Income</option>
       <option value="expense">Expense</option>
@@ -29,33 +31,37 @@
     <input id="title" placeholder="Description">
     <input id="amount" type="number" placeholder="Amount">
 
-    <button onclick="addTransaction()">➕ Add</button>
+    <button class="primary" onclick="addTransaction()">Add Transaction</button>
   </section>
 
   <section class="summary">
-    <div class="summary-card income">
-      <p>Income</p>
-      <h3>₹ <span id="monthIncome">0</span></h3>
+    <div>
+      <small>Income</small>
+      <strong>₹ <span id="monthIncome">0</span></strong>
     </div>
-    <div class="summary-card expense">
-      <p>Expense</p>
-      <h3>₹ <span id="monthExpense">0</span></h3>
+    <div>
+      <small>Expense</small>
+      <strong>₹ <span id="monthExpense">0</span></strong>
     </div>
   </section>
 
-  <section class="card">
-    <h3>🧾 Transactions</h3>
-    <ul id="transactionList"></ul>
-  </section>
+  <ul id="transactionList"></ul>
 
-  <section class="card">
-    <h3>⚙️ Manage Expense Categories</h3>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div id="settingsModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Manage Expense Categories</h3>
+
     <input id="newCategory" placeholder="Category name">
     <input id="newIcon" placeholder="Icon (🛒 ⚡ 💳)">
-    <button onclick="addCategory()">Add Category</button>
-    <ul id="categoryList"></ul>
-  </section>
+    <button onclick="addCategory()">Add</button>
 
+    <ul id="categoryList"></ul>
+
+    <button class="close" onclick="toggleSettings()">Close</button>
+  </div>
 </div>
 
 <script src="script.js"></script>
